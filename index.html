@@ -1,254 +1,591 @@
 <!DOCTYPE html>
-<html lang="en" id="top">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Doe // Dev Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Orbitron:wght@900&family=Cinzel+Decorative:wght@700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <title>I am Harshit this is my journey.</title>
     <style>
-        /* ---- 1. THEME & GLOBAL STYLES ---- */
+        /* ==========================================================================
+           1. CSS VARIABLES & THEMES
+           ========================================================================== */
         :root {
-            /* --- Dark Mode: Sci-Fi Terminal --- */
-            --bg-color: #0A0F1E;
-            --surface-color: rgba(16, 24, 45, 0.85);
-            --primary-color: #00F7FF;
-            --text-color: #A0A3D4;
-            --border-color: rgba(0, 247, 255, 0.2);
-            --line-color: rgba(0, 247, 255, 0.3);
-            --font-heading: 'Orbitron', sans-serif;
-            --font-body: 'Roboto Mono', monospace;
-            --cursor-url: url('data:image/png;base64,iVBORw0KGgoAAAANSUEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANhJREFUSA1jZKAyYKSyeQz0ZgA5fMMy/yM5g1goAZkGYBqAYgA1yAYchMyDkP8zC8IMoP/HBF2wB1iCCTgDxv8YqP4zCgMGoO/fA7MnUD3/v2UNoPEfA7M3/v9/UuT/kSj/kSj/kSj/kSj/Ecb/kSj/kSj/kSj/kSj/kSj/kSj/kSj/kSj/kSj/kSj/EaH+I1D9Z7A4/D93/M/A8A9T/2cg+T8D0/8ZWP4zsPznYH7+I1H+I1H+I1H+I1H+I1H+I1H+I1H+I1H+I1H+I1H+I1D9f6wBmn8MzA8Y/2eg+s/A9D8DEzAG5gPQ/yMGUH8GqgEAT7/UYNyM2DAAAAAASUVORKCYII=');
+            /* SCI-FI THEME (DEFAULT) */
+            --theme-sci-fi-bg: #010409;
+            --theme-sci-fi-text: #c9d1d9;
+            --theme-sci-fi-primary: #58a6ff;
+            --theme-sci-fi-accent: #1f6feb;
+            --theme-sci-fi-border: rgba(139, 148, 158, 0.4);
+            --theme-sci-fi-card-bg: rgba(22, 27, 34, 0.8);
+            --theme-sci-fi-tag-bg: #388bfd;
+            --theme-sci-fi-tag-text: #ffffff;
+            --font-sci-fi: 'IBM Plex Mono', 'Courier New', monospace;
+            --font-fantasy: 'EB Garamond', 'Georgia', serif;
+
+            /* FANTASY THEME */
+            --theme-fantasy-bg: #fdf6e4;
+            --theme-fantasy-text: #4a2c2a;
+            --theme-fantasy-primary: #8b4513; /* SaddleBrown */
+            --theme-fantasy-accent: #b22222; /* Firebrick */
+            --theme-fantasy-border: #d4b996;
+            --theme-fantasy-card-bg: rgba(253, 246, 228, 0.85);
+            --theme-fantasy-tag-bg: #c89c5b; /* Gold-ish */
+            --theme-fantasy-tag-text: #fdf6e4;
+            
+            /* DYNAMIC VARIABLES (will change with theme) */
+            --bg-color: var(--theme-sci-fi-bg);
+            --text-color: var(--theme-sci-fi-text);
+            --primary-color: var(--theme-sci-fi-primary);
+            --accent-color: var(--theme-sci-fi-accent);
+            --border-color: var(--theme-sci-fi-border);
+            --card-bg: var(--theme-sci-fi-card-bg);
+            --tag-bg: var(--theme-sci-fi-tag-bg);
+            --tag-text: var(--theme-sci-fi-tag-text);
+            --font-primary: var(--font-sci-fi);
+            --font-secondary: var(--font-sci-fi);
+            
+            /* Custom Cursors (Base64 encoded to keep it in one file) */
+            --cursor-sci-fi: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2358a6ff" stroke-width="1.5"><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M12 16a4 4 0 100-8 4 4 0 000 8z"/></svg>') 12 12, auto;
+            --cursor-fantasy: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGDSURBVEhL7ZJNKwRRFMb/800iI4tFFrJ8gAWSkU2yhYV8AsuFE1hYyB/AwpNFFrKYhYVswkYsLOQjeQKtczp1p3t3ZnaMhz51at775ptz7j2nBxyjA95pA5/UgbN04H0ddEAH6cBD6sB92gCNaABfXAQG0AO+6AAf6AAvgjAAnYkAG8iAAVzABZw0AKGJAEdIAqEwAC4wAWcMAChMAu0iQBe4wAWcMAChMAfUiwBX4AIXcNIAhMYoUI0AV+ACHHDSAIQmgD7RAIvgAhdw0gCEMoDOhADL4AIPcNIAhEaAHtEAD+ACHHDSAIQigI5EACzABZxwACEMoDNeAAs4YQBCE8B+gQAucMACgY0wA9bAAS6YAEoTRABzYAMXTAChIUA92IAPXDAAhI8Ad2AD3nDBABQ+AmzAFkyYAEobA/yADZgwAaQNAZ7ABkyYAFobA3yADZhwACkPoCc24AIOOIASBtAYG/ACDnCAkgTQExvwAg5wgBIEEBs/4D8c4ABLmECBvgE38w28mJgX0QAAAABJRU5ErkJggg==') 0 0, auto;
+            --cursor-url: var(--cursor-sci-fi);
         }
 
-        body.light-mode {
-            /* --- Light Mode: Medieval Fantasy --- */
-            --bg-color: #FBF3E4;
-            --surface-color: rgba(253, 250, 242, 0.9);
-            --primary-color: #A87932;
-            --text-color: #4A2E2C;
-            --border-color: rgba(168, 121, 50, 0.4);
-            --line-color: rgba(168, 121, 50, 0.4);
-            --font-heading: 'Cinzel Decorative', cursive;
-            --font-body: 'Lora', serif;
-            --cursor-url: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAARlJREFUSA211r1KA1EUAPBvggs7GwsfQDBqC4sUDM5gY5M3sFCMiC/gZ8jGQrELC/gRE7HyB2wsBEREEJTgA8iV3M3u3CQRh5b55s1mZ/5lZgqR+K83AMgBx1E+d83sK/TqT+0KMANwA5gBLC0GaAuwBLgB9AFsY9xTwy0k2s5mWsAOsAgsi/B8AicAn+OMiAn0A0xHg85dARfAPQJbAEPAf4FPAWIB/gKkE4BOAfYAvAW8B3gS8BPgXgL+ALwE3Ab8B/gI8BfgQ8C/gB8AnQIsA/wM2AT4G3Aj4HnAb4CPAzYD/ANsAfwK+B/wL+BvwI+DnwM+BjwE3gW+AmzD/ByAEH828d57dD/gBQS8ytr3/b8YAAAAASUVORK5CYII=');
-        }
-        
-        :root { --color-1: #F000FF; --color-2: #2196F3; --color-3: #4CAF50; }
-        body.light-mode { --color-1: #8C3B3B; --color-2: #2E5A88; --color-3: #38761D; }
+        /* FANTASY THEME OVERRIDES */
+        body.theme-fantasy {
+            --bg-color: var(--theme-fantasy-bg);
+            --text-color: var(--theme-fantasy-text);
+            --primary-color: var(--theme-fantasy-primary);
+            --accent-color: var(--theme-fantasy-accent);
+            --border-color: var(--theme-fantasy-border);
+            --card-bg: var(--theme-fantasy-card-bg);
+            --tag-bg: var(--theme-fantasy-tag-bg);
+            --tag-text: var(--theme-fantasy-tag-text);
+            --font-primary: var(--font-fantasy);
+            --font-secondary: var(--font-fantasy);
+            --cursor-url: var(--cursor-fantasy);
 
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; cursor: var(--cursor-url), auto; }
+            /* Parchment background effect */
+            background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAEAAQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAT/xAAZEAADAQEBAAAAAAAAAAAAAAAAAQIDETH/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AI2WfJfM8k9NchvCVAf/Z');
+            background-attachment: fixed;
+        }
+
+        /* ==========================================================================
+           2. GLOBAL STYLES & PRELOADER
+           ========================================================================== */
+        @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;700&display=swap');
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
-            background-color: var(--bg-color); color: var(--text-color); font-family: var(--font-body);
-            margin: 0; line-height: 1.7; transition: background-color 0.4s ease; overflow-x: hidden;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-primary);
+            transition: background-color 0.5s ease, color 0.5s ease;
+            cursor: var(--cursor-url);
         }
 
-        .background-layers { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-        .parchment-overlay { background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/2wBDAQICAgICAgUDAwUKBgYFBgUKBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgr/wAARCAAKAAoDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIFB//EACEQAAIBAwQDAQAAAAAAAAAAAAECAwAEIQUREgYxB0Fh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDQeF3ltbY6eW4nSMu4VQzAZIHb6o2TxbR4l3S+Qn0rE5/ag0iQIiqqgKowB2FYmgIjqMqQQRQDK//Z'); opacity: 0.3; display: none; }
-        body.light-mode .parchment-overlay { display: block; }
+        a, button {
+            cursor: var(--cursor-url);
+        }
         
-        h1, h2, h3 { font-family: var(--font-heading); color: var(--primary-color); text-shadow: 0 0 8px var(--primary-color); margin: 0; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        section { padding: 100px 0; }
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #010409;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #58a6ff;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.2rem;
+            transition: opacity 0.7s ease, visibility 0.7s ease;
+        }
         
-        /* ---- 2. PRELOADER, HERO, & SCROLL INDICATOR ---- */
-        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0A0F1E; z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease-out, visibility 0.5s ease-out; }
-        #preloader.loaded { opacity: 0; visibility: hidden; }
-        .loader-text { color: #00F7FF; font-family: 'Roboto Mono', monospace; font-size: 1rem; }
+        #preloader.loaded {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-text {
+            border-right: .15em solid #58a6ff;
+            white-space: nowrap;
+            overflow: hidden;
+            letter-spacing: .15em;
+            animation: typing 2.5s steps(30, end), blink-caret .75s step-end infinite;
+        }
         
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
-        .hero p { max-width: 600px; margin: 20px auto 0; font-size: 1.1rem; }
-        body.light-mode h1, body.light-mode h2, body.light-mode h3 { text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
         
-        .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); font-size: 2rem; color: var(--primary-color); animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); } 40% { transform: translate(-50%, -15px); } 60% { transform: translate(-50%, -5px); } }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #58a6ff; }
+        }
 
-        /* ---- 3. TIMELINE ---- */
-        .timeline-section { position: relative; }
-        .timeline-section::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background-color: var(--line-color); }
-        body.light-mode .timeline-section::before { background-image: linear-gradient(var(--line-color) 33%, rgba(255,255,255,0) 0%); background-position: center; background-size: 3px 6px; background-repeat: repeat-y; }
+        /* ==========================================================================
+           3. PARTICLES.JS BACKGROUND
+           ========================================================================== */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: opacity 0.5s ease;
+        }
 
-        .timeline-item { position: relative; width: 50%; padding: 0 50px; margin-bottom: 50px; opacity: 0; transform: translateY(50px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .timeline-item.is-visible { opacity: 1; transform: translateY(0); }
-        .timeline-item:nth-child(odd) { float: left; clear: left; text-align: right; }
-        .timeline-item:nth-child(even) { float: right; clear: right; text-align: left; }
+        .theme-fantasy #particles-js {
+            opacity: 0;
+        }
 
-        .timeline-dot { position: absolute; top: 5px; width: 20px; height: 20px; background-color: var(--bg-color); border: 3px solid var(--line-color); border-radius: 50%; z-index: 1; display: flex; align-items: center; justify-content: center; }
-        .timeline-item:nth-child(odd) .timeline-dot { right: -10px; }
-        .timeline-item:nth-child(even) .timeline-dot { left: -10px; }
-        .timeline-dot::after { content: ''; width: 8px; height: 8px; background-color: var(--dot-color); border-radius: 50%; }
+        /* ==========================================================================
+           4. LAYOUT & HERO SECTION
+           ========================================================================== */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-        .timeline-year { position: absolute; top: 0; font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; color: var(--text-color); }
-        .timeline-item:nth-child(odd) .timeline-year { left: -100px; }
-        .timeline-item:nth-child(even) .timeline-year { right: -100px; }
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
 
-        .timeline-content { background-color: var(--surface-color); padding: 30px; border-radius: 8px; backdrop-filter: blur(10px); }
-        body.light-mode .timeline-content { box-shadow: 0 5px 25px rgba(0,0,0,0.07); }
+        #hero-title {
+            font-size: clamp(2rem, 8vw, 4.5rem);
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            transition: color 0.5s ease;
+            font-family: var(--font-secondary);
+        }
+
+        #hero-subtitle {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            max-width: 700px;
+        }
+
+        .theme-fantasy #hero-title {
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        /* ==========================================================================
+           5. TIMELINE
+           ========================================================================== */
+        #timeline {
+            padding: 50px 0;
+        }
+
+        .timeline-container {
+            position: relative;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: var(--border-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+            transition: background-color 0.5s ease;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item.left {
+            left: 0;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+        }
+
+        /* The circles on the timeline */
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--bg-color);
+            border: 4px solid var(--primary-color);
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+            transition: background-color 0.5s ease, border-color 0.5s ease;
+        }
+
+        .timeline-item.right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--card-bg);
+            position: relative;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(5px);
+            transition: background-color 0.5s ease, border-color 0.5s ease;
+        }
+        .theme-fantasy .timeline-content {
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.1);
+        }
+
+        .project-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 5px 15px;
+            margin-bottom: 10px;
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            transition: all 0.5s ease;
+        }
+        /* Sci-fi "Pill" Tag */
+        .theme-sci-fi .project-tag {
+            border-radius: 50px;
+        }
+        /* Fantasy "Ribbon" Tag */
+        .theme-fantasy .project-tag {
+            position: relative;
+            border-radius: 2px;
+            margin-left: 15px;
+        }
+        .theme-fantasy .project-tag::before,
+        .theme-fantasy .project-tag::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 15px;
+            background: var(--tag-bg);
+        }
+        .theme-fantasy .project-tag::before {
+            left: -15px;
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+            clip-path: polygon(100% 0, 0 50%, 100% 100%);
+        }
         
-        .project-tag { display: inline-block; padding: 8px 20px; margin-bottom: 20px; font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: white; background-color: var(--tag-color); border: 1px solid var(--tag-color); }
-        .timeline-item:nth-child(odd) .project-tag { border-radius: 20px 5px 20px 5px; }
-        .timeline-item:nth-child(even) .project-tag { border-radius: 5px 20px 5px 20px; }
-        body.light-mode .project-tag { color: var(--text-color); background: transparent; padding: 5px 15px; clip-path: polygon(0% 0%, 100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%); }
+        .timeline-content h3 {
+            margin: 5px 0 10px 0;
+            font-family: var(--font-secondary);
+            color: var(--primary-color);
+            transition: color 0.5s ease;
+        }
 
-        .project-links { margin-top: 25px; display: flex; gap: 15px; }
-        .timeline-item:nth-child(odd) .project-links { justify-content: flex-end; }
-        .project-links a { color: var(--text-color); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.3s ease; }
-        .project-links a:hover { color: var(--primary-color); }
-        .project-links svg { width: 24px; height: 24px; fill: currentColor; }
+        .timeline-content time {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            display: block;
+            margin-bottom: 10px;
+        }
 
-        /* ---- 4. CONTACT SECTION ---- */
-        #contact { text-align: center; }
-        #contact p { max-width: 600px; margin: 20px auto 40px; }
-        .contact-links { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
-        .contact-links a { color: var(--text-color); text-decoration: none; transition: color 0.3s ease; }
-        .contact-links a:hover { color: var(--primary-color); }
-        .contact-links svg { width: 40px; height: 40px; fill: currentColor; }
-        
-        /* ---- 5. FLOATING BUTTON & RESPONSIVE ---- */
-        .theme-switch-wrapper { position: fixed; bottom: 30px; right: 30px; z-index: 100; }
-        .theme-switch { position: relative; display: flex; align-items: center; justify-content: center; width: 55px; height: 55px; background-color: var(--surface-color); border: 1px solid var(--border-color); border-radius: 50%; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        .theme-switch:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--primary-color); }
-        .theme-switch input { display: none; }
-        .theme-switch svg { width: 24px; height: 24px; fill: var(--text-color); transition: all 0.3s ease; }
-        .sun-icon { display: none; }
-        input:checked + .theme-switch .sun-icon { display: block; }
-        input:checked + .theme-switch .moon-icon { display: none; }
+        /* ==========================================================================
+           6. THEME SWITCHER
+           ========================================================================== */
+        #theme-switcher {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+            background-color: var(--card-bg);
+            backdrop-filter: blur(5px);
+            color: var(--primary-color);
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        #theme-switcher:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 0 15px var(--primary-color);
+        }
 
-        @media screen and (max-width: 800px) {
-            .timeline-section::before { left: 20px; }
-            .timeline-item, .timeline-item:nth-child(odd), .timeline-item:nth-child(even) { width: 100%; float: none; clear: none; text-align: left; padding: 0 0 0 50px; }
-            .timeline-item:nth-child(odd) .project-links { justify-content: flex-start; }
-            .timeline-dot, .timeline-item:nth-child(odd) .timeline-dot, .timeline-item:nth-child(even) .timeline-dot { left: 10px; right: auto; }
-            .timeline-year { position: static; margin-bottom: 10px; font-size: 1rem; text-align: left; }
+        /* ==========================================================================
+           7. RESPONSIVE DESIGN & ACCESSIBILITY
+           ========================================================================== */
+        @media screen and (max-width: 768px) {
+            .timeline-container::before {
+                left: 20px;
+                margin-left: 0;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 60px;
+                padding-right: 15px;
+            }
+
+            .timeline-item.left, .timeline-item.right {
+                left: 0%;
+            }
+
+            .timeline-item.left::after, .timeline-item.right::after {
+                left: 10px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .timeline-item {
+                opacity: 1;
+                transform: none;
+            }
         }
     </style>
-    
-    <script> (function() { const theme = localStorage.getItem('theme'); if (theme === 'light') document.body.classList.add('light-mode'); })(); </script>
 </head>
 <body>
-    <div id="preloader"><div class="loader-text" data-key="preloader">INITIALIZING...</div></div>
-    <div class="background-layers"><div id="particles-js"></div><div class="parchment-overlay"></div></div>
 
-    <div class="theme-switch-wrapper">
-        <input type="checkbox" id="checkbox" />
-        <label for="checkbox" class="theme-switch">
-            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a9.91 9.91 0 0 0-4.06 1.06A9.92 9.92 0 0 1 12 22a9.92 9.92 0 0 1-8.94-4.06A9.91 9.91 0 0 0 12 22a10 10 0 0 0 0-20z"/></svg>
-            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 8 8a8 8 0 0 0-8-8m0 14a6 6 0 1 1 6-6a6 6 0 0 1-6 6m0-12a1 1 0 0 0-1 1a1 1 0 0 0 1 1a1 1 0 0 0 1-1a1 1 0 0 0-1-1m0 18a1 1 0 0 0-1 1a1 1 0 0 0 1 1a1 1 0 0 0 1-1a1 1 0 0 0-1-1m-7-3a1 1 0 0 0-1 1a1 1 0 0 0 1 1a1 1 0 0 0 1-1a1 1 0 0 0-1-1m0-12a1 1 0 0 0-1 1a1 1 0 0 0 1 1a1 1 0 0 0 1-1a1 1 0 0 0-1-1m14 0a1 1 0 0 0-1 1a1 1 0 0 0 1 1a1 1 0 0 0 1-1a1 1 0 0 0-1-1m0 12a1 1 0 0 0-1 1a1 1 0 0 0 1 1a1 1 0 0 0 1-1a1 1 0 0 0-1-1m-7-2a4 4 0 1 1 4-4a4 4 0 0 1-4 4"/></svg>
-        </label>
+    <!-- ==========================================================================
+       SYSTEM BOOT PRELOADER
+       ========================================================================== -->
+    <div id="preloader">
+        <span class="preloader-text">INITIALIZING....99%....100%...LOADING...</span>
     </div>
 
-    <header class="hero container">
-        <h1 data-key="heroName">Alex Doe</h1>
-        <p data-key="heroSubtitle">A Game Developer's journey, from first prototypes to published projects. Welcome to my timeline.</p>
-        <div class="scroll-indicator">↓</div>
+    <!-- ==========================================================================
+       PARTICLES.JS BACKGROUND CANVAS
+       ========================================================================== -->
+    <div id="particles-js"></div>
+
+    <!-- ==========================================================================
+       THEME CHANGER BUTTON
+       ========================================================================== -->
+    <button id="theme-switcher" aria-label="Toggle theme">
+        <span id="theme-icon">🌙</span>
+    </button>
+    
+    <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+    <header id="hero" class="container">
+        <h1 id="hero-title">Harshit</h1>
+        <p id="hero-subtitle">A chronicle of my journey through the worlds of game development, one project at a time.</p>
     </header>
 
-    <main>
-        <section class="timeline-section container">
-            <h2 data-key="timelineTitle" style="text-align:center; margin-bottom: 80px;">Development Timeline</h2>
+    <!-- ==========================================================================
+       MAIN CONTENT - THE TIMELINE
+       ========================================================================== -->
+    <main id="timeline" class="container">
+        <h2 id="timeline-title" style="text-align: center; margin-bottom: 50px; font-size: 2.5rem; color: var(--primary-color);">Development Timeline</h2>
+        <div class="timeline-container">
+
+            <!-- === ADD YOUR PROJECTS HERE === -->
+            <!-- Each <div class="timeline-item"> is one project. Alternate the "left" and "right" classes. -->
+
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <span class="project-tag">First Steps</span>
+                    <h3>Project Alpha: The Beginning</h3>
+                    <time>Q1 2021</time>
+                    <p>My first foray into Unity. This was a simple 2D platformer where I learned the fundamentals of C#, physics, and the Unity Editor. It was a humble start, but it sparked my passion.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span class="project-tag">Game Jam</span>
+                    <h3>Chrono Glitch</h3>
+                    <time>Q3 2021</time>
+                    <p>Developed in 48 hours for a game jam. A top-down puzzle game where players manipulate time. This project taught me the importance of scope management and rapid prototyping under pressure.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <span class="project-tag">Shader Programming</span>
+                    <h3>Pixel Galaxy</h3>
+                    <time>Q1 2022</time>
+                    <p>Dived into the world of shaders and procedural generation. Created a visually stunning space exploration prototype with custom lighting and particle effects. A huge step up in technical art skills.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span class="project-tag">Multiplayer Networking</span>
+                    <h3>Project Chimera</h3>
+                    <time>Q4 2022</time>
+                    <p>Tackled the challenge of online multiplayer. Built a proof-of-concept for a cooperative survival game, learning about client-server architecture, state synchronization, and latency compensation.</p>
+                </div>
+            </div>
             
-            <!-- PROJECT 1 -->
-            <div class="timeline-item">
-                <div class="timeline-dot" style="--dot-color: var(--color-1);"></div>
-                <div class="timeline-year" data-key="project1Year">2021</div>
+            <div class="timeline-item right">
                 <div class="timeline-content">
-                    <div class="project-tag" style="--tag-color: var(--color-1);" data-key="project1Tag">First Project</div>
-                    <h3 data-key="project1Title">Pixel Guardian</h3>
-                    <p data-key="project1Desc">My first complete game! A 2D top-down shooter that was my deep dive into Unity and C#, teaching me the fundamentals of game development.</p>
-                    <div class="project-links">
-                        <a href="#" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21-.15.46-.55.38A8.013 8.013 0 008 0z"></path></svg><span data-key="projectLinkGithub">GitHub</span></a>
-                        <a href="#" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z"></path></svg><span data-key="projectLinkPost">Dev Post</span></a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PROJECT 2 -->
-            <div class="timeline-item">
-                <div class="timeline-dot" style="--dot-color: var(--color-2);"></div>
-                <div class="timeline-year" data-key="project2Year">2022</div>
-                <div class="timeline-content">
-                    <div class="project-tag" style="--tag-color: var(--color-2);" data-key="project2Tag">Game Jam</div>
-                    <h3 data-key="project2Title">Chrono Weaver</h3>
-                    <p data-key="project2Desc">Developed in a 48-hour game jam. This puzzle-platformer focused on time manipulation and taught me lessons in rapid prototyping.</p>
-                     <div class="project-links">
-                        <a href="#" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21-.15.46-.55.38A8.013 8.013 0 008 0z"></path></svg><span data-key="projectLinkGithub">GitHub</span></a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PROJECT 3 -->
-            <div class="timeline-item">
-                <div class="timeline-dot" style="--dot-color: var(--color-3);"></div>
-                <div class="timeline-year" data-key="project3Year">2023</div>
-                <div class="timeline-content">
-                    <div class="project-tag" style="--tag-color: var(--color-3);" data-key="project3Tag">Passion Project</div>
-                    <h3 data-key="project3Title">Project Nebula</h3>
-                    <p data-key="project3Desc">A 3D low-poly space sim with procedural planet generation. This was a deep dive into more complex systems and custom shader effects.</p>
-                     <div class="project-links">
-                        <a href="#" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z"></path></svg><span data-key="projectLinkPost">Dev Post</span></a>
-                    </div>
+                    <span class="project-tag">Commercial Release</span>
+                    <h3>Whispering Woods</h3>
+                    <time>Q3 2023</time>
+                    <p>My first commercially released indie title on Steam. A narrative-driven adventure game. This journey taught me about marketing, QA, community management, and the full development lifecycle.</p>
                 </div>
             </div>
             
-            <div style="clear: both;"></div>
-        </section>
+            <!-- === END OF PROJECTS SECTION === -->
 
-        <section id="contact" class="container">
-            <h2 data-key="contactTitle">Get In Touch</h2>
-            <p data-key="contactSubtitle">I'm always open to new opportunities and collaborations. Feel free to connect with me.</p>
-            <div class="contact-links">
-                <a href="#" target="_blank" rel="noopener noreferrer" title="GitHub"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21-.15.46-.55.38A8.013 8.013 0 008 0z"></path></svg></a>
-                <a href="#" target="_blank" rel="noopener noreferrer" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z"></path></svg></a>
-            </div>
-        </section>
+        </div>
     </main>
     
+    <!-- ==========================================================================
+       JAVASCRIPT LIBRARIES & CUSTOM SCRIPT
+       ========================================================================== -->
+    <!-- Particles.js from a CDN -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const themes = {
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- DOM Element References ---
+            const body = document.body;
+            const themeSwitcher = document.getElementById('theme-switcher');
+            const themeIcon = document.getElementById('theme-icon');
+            const particlesContainer = document.getElementById('particles-js');
+            const preloader = document.getElementById('preloader');
+
+            // --- Dynamic Text Content ---
+            // This object holds all the text that changes between themes.
+            const textContent = {
                 sciFi: {
-                    preloader: "INITIALIZING DATA STREAM...", heroName: "Alex Doe", heroSubtitle: "A Game Developer's journey, from first prototypes to published projects. Welcome to my timeline.", timelineTitle: "Development Timeline", project1Year: "2021", project1Tag: "First Project", project1Title: "Pixel Guardian", project1Desc: "My first complete game! A 2D top-down shooter that was my deep dive into Unity and C#, teaching me the fundamentals of game development.", projectLinkGithub: "GitHub", projectLinkPost: "Dev Post", project2Year: "2022", project2Tag: "Game Jam", project2Title: "Chrono Weaver", project2Desc: "Developed in a 48-hour game jam. This puzzle-platformer focused on time manipulation and taught me lessons in rapid prototyping.", project3Year: "2023", project3Tag: "Passion Project", project3Title: "Project Nebula", project3Desc: "A 3D low-poly space sim with procedural planet generation. This was a deep dive into more complex systems and custom shader effects.", contactTitle: "Get In Touch", contactSubtitle: "I'm always open to new opportunities and collaborations. Feel free to connect with me."
+                    heroTitle: 'Welcome, I am Harshit.',
+                    heroSubtitle: 'This is a chronological data log of my journey through the complex systems of game development.',
+                    timelineTitle: 'Development Timeline',
+                    preloaderText: 'INITIALIZING DATA STREAM........................'
                 },
                 fantasy: {
-                    preloader: "Unfurling the Ancient Scrolls...", heroName: "Alex Doe", heroSubtitle: "A Weaver of Worlds and Teller of Tales. Behold the chronicles of my grand endeavors.", timelineTitle: "The Chronicles", project1Year: "First Year", project1Tag: "The First Trial", project1Title: "The Guardian's Oath", project1Desc: "My first foray into the arcane arts. A 2D adventure that taught me the foundational magic of the Unity engine and C# scripting.", projectLinkGithub: "Blueprints", projectLinkPost: "The Scroll", project2Year: "Second Year", project2Tag: "A Hasty Quest", project2Title: "The Time Weaver's Loom", project2Desc: "Crafted under a 48-hour magical pact, this legend explores the arts of time manipulation and swift creation.", project3Year: "Third Year", project3Tag: "A Grand Saga", project3Title: "The Nebula Expedition", project3Desc: "An epic scroll detailing my work on a 3D world with procedurally generated lands and mystical crafting systems.", contactTitle: "Send a Raven", contactSubtitle: "I welcome fellow adventurers and patrons of the arts. Pray, do not hesitate to make contact."
+                    heroTitle: 'Welcome, I am Harshit.',
+                    heroSubtitle: 'This is a telling of my grand quest through the realms of game development, one chapter at a time.',
+                    timelineTitle: 'The Grand Chronicle',
+                    preloaderText: 'UNFURLING THE SCROLL...............................'
                 }
             };
-
-            const toggleSwitch = document.querySelector('#checkbox');
             
-            function applyTheme(themeName) {
-                const theme = themes[themeName];
-                document.querySelectorAll('[data-key]').forEach(element => {
-                    const key = element.dataset.key;
-                    if (theme[key] !== undefined) element.innerHTML = theme[key];
+            // --- Helper to update all dynamic text elements ---
+            const updateTextContent = (theme) => {
+                const content = (theme === 'fantasy') ? textContent.fantasy : textContent.sciFi;
+                document.getElementById('hero-title').textContent = content.heroTitle.replace('[Your Name]', 'Your Name'); // Replace with your actual name
+                document.getElementById('hero-subtitle').textContent = content.heroSubtitle;
+                document.getElementById('timeline-title').textContent = content.timelineTitle;
+                document.querySelector('.preloader-text').textContent = content.preloaderText;
+            };
+
+            // --- Particles.js Configuration ---
+            const particlesConfig = {
+                "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#58a6ff" }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": true, "distance": 150, "color": "#58a6ff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": true
+            };
+
+            // --- Theme Management ---
+            let currentTheme = 'sci-fi';
+
+            const applyTheme = (theme) => {
+                body.classList.remove('theme-sci-fi', 'theme-fantasy');
+                body.classList.add(`theme-${theme}`);
+                themeIcon.textContent = (theme === 'sci-fi') ? '🌙' : '☀️';
+                
+                updateTextContent(theme);
+                localStorage.setItem('portfolio-theme', theme);
+                currentTheme = theme;
+
+                // Handle particles
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (!prefersReducedMotion && theme === 'sci-fi') {
+                    particlesContainer.innerHTML = ''; // Clear previous instance if any
+                    particlesJS('particles-js', particlesConfig);
+                } else {
+                    particlesContainer.innerHTML = ''; // Destroy particles
+                }
+            };
+            
+            themeSwitcher.addEventListener('click', () => {
+                const newTheme = currentTheme === 'sci-fi' ? 'fantasy' : 'sci-fi';
+                applyTheme(newTheme);
+            });
+
+            // --- Initial Theme Load ---
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else if (systemPrefersDark) {
+                applyTheme('sci-fi');
+            } else {
+                applyTheme('fantasy'); // Default to light if no preference
+            }
+
+            // --- Intersection Observer for Scroll Animations ---
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (!prefersReducedMotion) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1
                 });
-                document.getElementById('particles-js').style.display = themeName === 'fantasy' ? 'none' : 'block';
+
+                timelineItems.forEach(item => {
+                    observer.observe(item);
+                });
+            } else {
+                // If user prefers reduced motion, make all items visible immediately
+                timelineItems.forEach(item => item.classList.add('visible'));
             }
 
-            function setTheme(isLight) {
-                document.body.classList.toggle('light-mode', isLight);
-                localStorage.setItem('theme', isLight ? 'light' : 'dark');
-                applyTheme(isLight ? 'fantasy' : 'sciFi');
-            }
-
-            const initialThemeIsLight = localStorage.getItem('theme') === 'light';
-            toggleSwitch.checked = initialThemeIsLight;
-            setTheme(initialThemeIsLight);
-            toggleSwitch.addEventListener('change', e => setTheme(e.target.checked));
-            
-            window.addEventListener('load', () => document.getElementById('preloader').classList.add('loaded'));
-            
-            const observer = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('is-visible')), { threshold: 0.2 });
-            document.querySelectorAll('.timeline-item').forEach(item => observer.observe(item));
-            
-            if (!window.matchMedia(`(prefers-reduced-motion: reduce)`).matches) {
-                 particlesJS("particles-js", { particles: { number: { value: 60 }, color: { value: "#00F7FF" }, shape: { type: "triangle" }, opacity: { value: 0.1, random: true }, size: { value: 3 }, line_linked: { enable: true, distance: 150, color: "#00F7FF", opacity: 0.2, width: 1 }, move: { enable: true, speed: 2, out_mode: "out" } }, interactivity: { events: { onhover: { enable: true, mode: "grab" } }, modes: { grab: { distance: 140 } } }, retina_detect: true });
-            }
+            // --- Preloader Hiding Logic ---
+            window.addEventListener('load', () => {
+                preloader.classList.add('loaded');
+            });
         });
     </script>
 </body>
