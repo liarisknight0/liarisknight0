@@ -22,13 +22,13 @@
             --font-fantasy: 'EB Garamond', 'Georgia', serif;
 
             /* FANTASY THEME */
-            --theme-fantasy-bg: #fdf6e4;
-            --theme-fantasy-text: #4a2c2a;
-            --theme-fantasy-primary: #8b4513; /* SaddleBrown */
+            --theme-fantasy-bg: #382e25; /* Dark wood base color */
+            --theme-fantasy-text: #e8d8c3; /* Light parchment text for readability */
+            --theme-fantasy-primary: #d4af37; /* Gold */
             --theme-fantasy-accent: #b22222; /* Firebrick */
-            --theme-fantasy-border: #d4b996;
-            --theme-fantasy-card-bg: rgba(253, 246, 228, 0.85);
-            --theme-fantasy-tag-bg: #c89c5b; /* Gold-ish */
+            --theme-fantasy-border: #7a5c3b;
+            --theme-fantasy-card-bg: rgba(40, 30, 20, 0.85); /* Dark, semi-transparent card */
+            --theme-fantasy-tag-bg: #a33b1e; /* Burgundy */
             --theme-fantasy-tag-text: #fdf6e4;
             
             /* DYNAMIC VARIABLES (will change with theme) */
@@ -43,9 +43,9 @@
             --font-primary: var(--font-sci-fi);
             --font-secondary: var(--font-sci-fi);
             
-            /* Custom Cursors (Base64 encoded to keep it in one file) */
+            /* Custom Cursors */
             --cursor-sci-fi: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2358a6ff" stroke-width="1.5"><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3M12 16a4 4 0 100-8 4 4 0 000 8z"/></svg>') 12 12, auto;
-            --cursor-fantasy: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGDSURBVEhL7ZJNKwRRFMb/800iI4tFFrJ8gAWSkU2yhYV8AsuFE1hYyB/AwpNFFrKYhYVswkYsLOQjeQKtczp1p3t3ZnaMhz51at775ptz7j2nBxyjA95pA5/UgbN04H0ddEAH6cBD6sB92gCNaABfXAQG0AO+6AAf6AAvgjAAnYkAG8iAAVzABZw0AKGJAEdIAqEwAC4wAWcMAChMAu0iQBe4wAWcMAChMAfUiwBX4AIXcNIAhMYoUI0AV+ACHHDSAIQmgD7RAIvgAhdw0gCEMoDOhADL4AIPcNIAhEaAHtEAD+ACHHDSAIQigI5EACzABZxwACEMoDNeAAs4YQBCE8B+gQAucMACgY0wA9bAAS6YAEoTRABzYAMXTAChIUA92IAPXDAAhI8Ad2AD3nDBABQ+AmzAFkyYAEobA/yADZgwAaQNAZ7ABkyYAFobA3yADZhwACkPoCc24AIOOIASBtAYG/ACDnCAkgTQExvwAg5wgBIEEBs/4D8c4ABLmECBvgE38w28mJgX0QAAAABJRU5ErkJggg==') 0 0, auto;
+            --cursor-fantasy: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGDSURBVEhL7ZJNKwRRFMb/800iI4tFFrJ8gAWSkU2yhYV8AsuFE1hYyB/AwpNFFrKYhYVswkYsLOQjeQKtczp1p3t3ZnaMhz51at775ptz7j2nBxyjA95pA5/UgbN04H0ddEAH6cBD6sB92gCNaABfXAQG0AO+6AAf6AAvgjAAnYkAG8iAAVzABZw0AKGJAEdIAqEwAC4wAWcMAChMAu0iQBe4wAWcMAChMAfUiwBX4AIXcNIAhMYoUI0AV+ACHHDSAIQmgD7RAIvgAhdw0gCEMoDOhADL4AIPcNIAhEaAHtEAD+ACHHDSAIQigI5EACzABZxwACEMoDNeAAs4YQBCE8B+gQAucMACgY0wA9bAAS6YAEoTRABzYAMXTAChIUA92IAPXDAAhI8Ad2AD3nDBABQ+AmzAFkyYAEobA/yADZgwAaQNAZ7ABkyYAFobA3yADZhwACkPoCc24AIOOIASBtAYG/ACDnCAkgTQExvwAg5wgBIEEBs/D8c4ABLmECBvgE38w28mJgX0QAAAABJRU5ErkJggg==') 0 0, auto;
             --cursor-url: var(--cursor-sci-fi);
         }
 
@@ -62,366 +62,152 @@
             --font-primary: var(--font-fantasy);
             --font-secondary: var(--font-fantasy);
             --cursor-url: var(--cursor-fantasy);
-
-            /* Parchment background effect */
-            background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAEAAQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAT/xAAZEAADAQEBAAAAAAAAAAAAAAAAAQIDETH/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AI2WfJfM8k9NchvCVAf/Z');
+            
+            /* Worn tavern wood table background texture */
+            background-image: url('data:image/jpeg;base64,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');
+            background-size: cover;
             background-attachment: fixed;
+        }
+
+        /* Flickering candlelight effect for fantasy theme */
+        @keyframes flicker {
+            0%   { opacity: 0.9; }
+            20%  { opacity: 0.85; }
+            40%  { opacity: 0.95; }
+            60%  { opacity: 0.88; }
+            80%  { opacity: 1.0; }
+            100% { opacity: 0.9; }
+        }
+        body.theme-fantasy::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 180, 80, 0.15) 0%, rgba(40, 20, 0, 0.6) 80%, rgba(20, 10, 0, 0.8) 100%);
+            z-index: -1;
+            pointer-events: none;
+            animation: flicker 5s linear infinite;
         }
 
         /* ==========================================================================
            2. GLOBAL STYLES & PRELOADER
            ========================================================================== */
         @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;700&display=swap');
-
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-primary);
-            transition: background-color 0.5s ease, color 0.5s ease;
-            cursor: var(--cursor-url);
-        }
-
-        a, button {
-            cursor: var(--cursor-url);
-        }
-        
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #010409;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #58a6ff;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 1.2rem;
-            transition: opacity 0.7s ease, visibility 0.7s ease;
-        }
-        
-        #preloader.loaded {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .preloader-text {
-            border-right: .15em solid #58a6ff;
-            white-space: nowrap;
-            overflow: hidden;
-            letter-spacing: .15em;
-            animation: typing 2.5s steps(30, end), blink-caret .75s step-end infinite;
-        }
-        
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #58a6ff; }
-        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: var(--font-primary); transition: background-color 0.5s ease, color 0.5s ease; cursor: var(--cursor-url); position: relative; }
+        a, button { cursor: var(--cursor-url); }
+        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #010409; z-index: 9999; display: flex; justify-content: center; align-items: center; color: #58a6ff; font-family: 'IBM Plex Mono', monospace; font-size: 1.2rem; transition: opacity 0.7s ease, visibility 0.7s ease; }
+        #preloader.loaded { opacity: 0; visibility: hidden; }
+        .preloader-text { border-right: .15em solid #58a6ff; white-space: nowrap; overflow: hidden; letter-spacing: .15em; animation: typing 2.5s steps(30, end), blink-caret .75s step-end infinite; }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #58a6ff; } }
 
         /* ==========================================================================
-           3. PARTICLES.JS BACKGROUND
+           3. UNIQUE BACKGROUNDS
            ========================================================================== */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            transition: opacity 0.5s ease;
-        }
-
-        .theme-fantasy #particles-js {
-            opacity: 0;
-        }
-
+        @keyframes move-stars { from { transform: translateY(0); } to { transform: translateY(-2000px); } }
+        #starfield { display: none; }
+        .theme-sci-fi #starfield { display: block; position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -2; }
+        #stars1, #stars2, #stars3 { width: 1px; height: 1px; background: transparent; position: absolute; top: 0; left: 0; animation-name: move-stars; animation-timing-function: linear; animation-iteration-count: infinite; }
+        #stars1 { box-shadow: 0 0 1000px 1px #fff, 500px 800px 1px #fff, 200px 1500px 1px #fff, 1000px 1200px 1px #fff, 1400px 400px 1px #fff, 900px 1800px 1px #fff, 1800px 900px 1px #fff, 300px 300px 1px #fff, 1600px 1400px 1px #fff; animation-duration: 200s; }
+        #stars2 { box-shadow: 0 0 1000px 2px #fff, 400px 700px 2px #fff, 300px 1400px 2px #fff, 1100px 1100px 2px #fff, 1500px 300px 2px #fff, 800px 1900px 2px #fff, 1900px 800px 2px #fff, 400px 400px 2px #fff, 1700px 1300px 2px #fff; animation-duration: 120s; }
+        #stars3 { box-shadow: 0 0 1000px 3px #fff, 600px 600px 3px #fff, 100px 1200px 3px #fff, 1200px 1000px 3px #fff, 1300px 500px 3px #fff, 700px 1700px 3px #fff, 1700px 700px 3px #fff, 500px 500px 3px #fff, 1500px 1500px 3px #fff; animation-duration: 80s; }
+        
+        #particles-js { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; transition: opacity 0.5s ease; }
+        .theme-fantasy #particles-js { opacity: 0; }
+        
         /* ==========================================================================
            4. LAYOUT & HERO SECTION
            ========================================================================== */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        #hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        #hero-title {
-            font-size: clamp(2rem, 8vw, 4.5rem);
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            transition: color 0.5s ease;
-            font-family: var(--font-secondary);
-        }
-
-        #hero-subtitle {
-            font-size: clamp(1rem, 4vw, 1.5rem);
-            max-width: 700px;
-        }
-
-        .theme-fantasy #hero-title {
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        #hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        #hero-title { font-size: clamp(2rem, 8vw, 4.5rem); font-weight: 700; color: var(--primary-color); margin-bottom: 0.5rem; transition: color 0.5s ease; font-family: var(--font-secondary); }
+        #hero-subtitle { font-size: clamp(1rem, 4vw, 1.5rem); max-width: 700px; }
+        .theme-fantasy #hero-title { text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
 
         /* ==========================================================================
            5. TIMELINE
            ========================================================================== */
-        #timeline {
-            padding: 50px 0;
-        }
-
-        .timeline-container {
-            position: relative;
-        }
-
-        .timeline-container::before {
-            content: '';
-            position: absolute;
-            width: 3px;
-            background-color: var(--border-color);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -1.5px;
-            transition: background-color 0.5s ease;
-        }
-
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .timeline-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .timeline-item.left {
-            left: 0;
-        }
-
-        .timeline-item.right {
-            left: 50%;
-        }
-
-        /* The circles on the timeline */
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            right: -10px;
-            background-color: var(--bg-color);
-            border: 4px solid var(--primary-color);
-            top: 25px;
-            border-radius: 50%;
-            z-index: 1;
-            transition: background-color 0.5s ease, border-color 0.5s ease;
-        }
-
-        .timeline-item.right::after {
-            left: -10px;
-        }
-
-        .timeline-content {
-            padding: 20px 30px;
-            background-color: var(--card-bg);
-            position: relative;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(5px);
-            transition: background-color 0.5s ease, border-color 0.5s ease;
-        }
-        .theme-fantasy .timeline-content {
-            box-shadow: 3px 3px 8px rgba(0,0,0,0.1);
-        }
-
-        .project-tag {
-            display: inline-block;
-            font-size: 0.8rem;
-            font-weight: bold;
-            padding: 5px 15px;
-            margin-bottom: 10px;
-            background-color: var(--tag-bg);
-            color: var(--tag-text);
-            transition: all 0.5s ease;
-        }
-        /* Sci-fi "Pill" Tag */
-        .theme-sci-fi .project-tag {
-            border-radius: 50px;
-        }
-        /* Fantasy "Ribbon" Tag */
-        .theme-fantasy .project-tag {
-            position: relative;
-            border-radius: 2px;
-            margin-left: 15px;
-        }
-        .theme-fantasy .project-tag::before,
-        .theme-fantasy .project-tag::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 15px;
-            background: var(--tag-bg);
-        }
-        .theme-fantasy .project-tag::before {
-            left: -15px;
-            border-top-left-radius: 2px;
-            border-bottom-left-radius: 2px;
-            clip-path: polygon(100% 0, 0 50%, 100% 100%);
-        }
-        
-        .timeline-content h3 {
-            margin: 5px 0 10px 0;
-            font-family: var(--font-secondary);
-            color: var(--primary-color);
-            transition: color 0.5s ease;
-        }
-
-        .timeline-content time {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            display: block;
-            margin-bottom: 10px;
-        }
+        #timeline { padding: 50px 0; }
+        .timeline-container { position: relative; }
+        .timeline-container::before { content: ''; position: absolute; width: 3px; background-color: var(--border-color); top: 0; bottom: 0; left: 50%; margin-left: -1.5px; transition: background-color 0.5s ease; }
+        .timeline-item { padding: 10px 40px; position: relative; background-color: inherit; width: 50%; opacity: 0; transform: translateY(50px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .timeline-item.visible { opacity: 1; transform: translateY(0); }
+        .timeline-item.left { left: 0; }
+        .timeline-item.right { left: 50%; }
+        .timeline-item::after { content: ''; position: absolute; width: 20px; height: 20px; right: -10px; background-color: var(--card-bg); border: 4px solid var(--primary-color); top: 25px; border-radius: 50%; z-index: 1; transition: background-color 0.5s ease, border-color 0.5s ease; }
+        .timeline-item.right::after { left: -10px; }
+        .timeline-content { padding: 20px 30px; background-color: var(--card-bg); position: relative; border-radius: 6px; border: 1px solid var(--border-color); backdrop-filter: blur(5px); transition: background-color 0.5s ease, border-color 0.5s ease; }
+        .theme-fantasy .timeline-content { box-shadow: 3px 3px 8px rgba(0,0,0,0.4); }
+        .project-tag { display: inline-block; font-size: 0.8rem; font-weight: bold; padding: 5px 15px; margin-bottom: 10px; background-color: var(--tag-bg); color: var(--tag-text); transition: all 0.5s ease; }
+        .theme-sci-fi .project-tag { border-radius: 50px; }
+        .theme-fantasy .project-tag { position: relative; border-radius: 2px; margin-left: 15px; box-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+        .theme-fantasy .project-tag::before { content: ""; position: absolute; top: 0; bottom: 0; width: 15px; background: var(--tag-bg); }
+        .theme-fantasy .project-tag::before { left: -15px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; clip-path: polygon(100% 0, 0 50%, 100% 100%); }
+        .timeline-content h3 { margin: 5px 0 10px 0; font-family: var(--font-secondary); color: var(--primary-color); transition: color 0.5s ease; }
+        .timeline-content time { font-size: 0.9rem; opacity: 0.8; display: block; margin-bottom: 10px; }
 
         /* ==========================================================================
            6. THEME SWITCHER
            ========================================================================== */
-        #theme-switcher {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid var(--primary-color);
-            background-color: var(--card-bg);
-            backdrop-filter: blur(5px);
-            color: var(--primary-color);
-            font-size: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        #theme-switcher:hover {
-            transform: scale(1.1) rotate(15deg);
-            box-shadow: 0 0 15px var(--primary-color);
-        }
+        #theme-switcher { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-color); background-color: var(--card-bg); backdrop-filter: blur(5px); color: var(--primary-color); font-size: 24px; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 1000; transition: all 0.3s ease; }
+        #theme-switcher:hover { transform: scale(1.1) rotate(15deg); box-shadow: 0 0 15px var(--primary-color); }
+        
+        /* ==========================================================================
+           7. CONTACT SECTION
+           ========================================================================== */
+        #contact { padding: 100px 0; text-align: center; }
+        #contact-subtitle { max-width: 600px; margin: 0 auto 40px auto; line-height: 1.6; }
+        .social-links { margin-bottom: 40px; }
+        .social-links ul { list-style: none; padding: 0; display: flex; justify-content: center; gap: 25px; }
+        .social-links a { color: var(--text-color); font-size: 2rem; transition: color 0.3s ease, transform 0.3s ease; display: inline-block; }
+        .social-links a:hover { color: var(--primary-color); transform: scale(1.2); }
+        .social-links svg { width: 32px; height: 32px; fill: currentColor; }
+        #contact-form { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; text-align: left; }
+        .form-group { display: flex; flex-direction: column; }
+        #contact-form label { margin-bottom: 8px; font-size: 0.9rem; font-weight: bold; opacity: 0.9; }
+        #contact-form input, #contact-form textarea { width: 100%; padding: 12px 15px; border-radius: 6px; border: 2px solid var(--border-color); background-color: var(--card-bg); color: var(--text-color); font-family: inherit; font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        #contact-form input:focus, #contact-form textarea:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 10px rgba(var(--primary-color), 0.5); }
+        #contact-form textarea { min-height: 150px; resize: vertical; }
+        #submit-btn { padding: 12px 30px; border: none; border-radius: 6px; background-color: var(--primary-color); color: var(--theme-sci-fi-bg); font-family: var(--font-secondary); font-size: 1.1rem; font-weight: bold; cursor: var(--cursor-url); transition: background-color 0.3s ease, transform 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 10px; align-self: center; }
+        .theme-fantasy #submit-btn { color: var(--theme-fantasy-tag-text); box-shadow: 1px 1px 5px rgba(0,0,0,0.4); }
+        #submit-btn:hover { background-color: var(--accent-color); transform: translateY(-3px); }
+        #submit-btn svg { width: 20px; height: 20px; }
 
         /* ==========================================================================
-           7. RESPONSIVE DESIGN & ACCESSIBILITY
+           8. RESPONSIVE DESIGN & ACCESSIBILITY
            ========================================================================== */
-        @media screen and (max-width: 768px) {
-            .timeline-container::before {
-                left: 20px;
-                margin-left: 0;
-            }
-
-            .timeline-item {
-                width: 100%;
-                padding-left: 60px;
-                padding-right: 15px;
-            }
-
-            .timeline-item.left, .timeline-item.right {
-                left: 0%;
-            }
-
-            .timeline-item.left::after, .timeline-item.right::after {
-                left: 10px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-            .timeline-item {
-                opacity: 1;
-                transform: none;
-            }
+        @media screen and (max-width: 768px) { .timeline-container::before { left: 20px; margin-left: 0; } .timeline-item { width: 100%; padding-left: 60px; padding-right: 15px; } .timeline-item.left, .timeline-item.right { left: 0%; } .timeline-item.left::after, .timeline-item.right::after { left: 10px; } }
+        @media (prefers-reduced-motion: reduce) { 
+            html { scroll-behavior: auto; } 
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } 
+            .timeline-item { opacity: 1; transform: none; }
+            #starfield { display: none !important; }
+            body.theme-fantasy::before { animation: none !important; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ==========================================================================
-       SYSTEM BOOT PRELOADER
-       ========================================================================== -->
-    <div id="preloader">
-        <span class="preloader-text">INITIALIZING....99%....100%...LOADING...</span>
+    <div id="starfield">
+        <div id="stars1"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
     </div>
 
-    <!-- ==========================================================================
-       PARTICLES.JS BACKGROUND CANVAS
-       ========================================================================== -->
+    <div id="preloader"><span class="preloader-text">INITIALIZING DATA STREAM...</span></div>
     <div id="particles-js"></div>
-
-    <!-- ==========================================================================
-       THEME CHANGER BUTTON
-       ========================================================================== -->
-    <button id="theme-switcher" aria-label="Toggle theme">
-        <span id="theme-icon">🌙</span>
-    </button>
+    <button id="theme-switcher" aria-label="Toggle theme"><span id="theme-icon">🌙</span></button>
     
-    <!-- ==========================================================================
-       HERO SECTION
-       ========================================================================== -->
     <header id="hero" class="container">
         <h1 id="hero-title">Harshit</h1>
         <p id="hero-subtitle">A chronicle of my journey through the worlds of game development, one project at a time.</p>
     </header>
 
-    <!-- ==========================================================================
-       MAIN CONTENT - THE TIMELINE
-       ========================================================================== -->
     <main id="timeline" class="container">
         <h2 id="timeline-title" style="text-align: center; margin-bottom: 50px; font-size: 2.5rem; color: var(--primary-color);">Development Timeline</h2>
         <div class="timeline-container">
-
             <!-- === ADD YOUR PROJECTS HERE === -->
-            <!-- Each <div class="timeline-item"> is one project. Alternate the "left" and "right" classes. -->
-
             <div class="timeline-item right">
                 <div class="timeline-content">
                     <span class="project-tag">First Steps</span>
@@ -430,7 +216,6 @@
                     <p>My first foray into Unity. This was a simple 2D platformer where I learned the fundamentals of C#, physics, and the Unity Editor. It was a humble start, but it sparked my passion.</p>
                 </div>
             </div>
-
             <div class="timeline-item left">
                 <div class="timeline-content">
                     <span class="project-tag">Game Jam</span>
@@ -439,7 +224,6 @@
                     <p>Developed in 48 hours for a game jam. A top-down puzzle game where players manipulate time. This project taught me the importance of scope management and rapid prototyping under pressure.</p>
                 </div>
             </div>
-
             <div class="timeline-item right">
                 <div class="timeline-content">
                     <span class="project-tag">Shader Programming</span>
@@ -448,8 +232,7 @@
                     <p>Dived into the world of shaders and procedural generation. Created a visually stunning space exploration prototype with custom lighting and particle effects. A huge step up in technical art skills.</p>
                 </div>
             </div>
-
-            <div class="timeline-item left">
+             <div class="timeline-item left">
                 <div class="timeline-content">
                     <span class="project-tag">Multiplayer Networking</span>
                     <h3>Project Chimera</h3>
@@ -457,7 +240,6 @@
                     <p>Tackled the challenge of online multiplayer. Built a proof-of-concept for a cooperative survival game, learning about client-server architecture, state synchronization, and latency compensation.</p>
                 </div>
             </div>
-            
             <div class="timeline-item right">
                 <div class="timeline-content">
                     <span class="project-tag">Commercial Release</span>
@@ -466,126 +248,111 @@
                     <p>My first commercially released indie title on Steam. A narrative-driven adventure game. This journey taught me about marketing, QA, community management, and the full development lifecycle.</p>
                 </div>
             </div>
-            
             <!-- === END OF PROJECTS SECTION === -->
-
         </div>
     </main>
-    
-    <!-- ==========================================================================
-       JAVASCRIPT LIBRARIES & CUSTOM SCRIPT
-       ========================================================================== -->
-    <!-- Particles.js from a CDN -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
+    <section id="contact" class="container">
+        <h2 id="contact-title" style="margin-bottom: 1rem; font-size: 2.5rem; color: var(--primary-color);">Establish a Link</h2>
+        <p id="contact-subtitle">Have a project, a question, or just want to connect? My comms are open. Use the form below or find me on these networks.</p>
+
+        <div class="social-links">
+            <ul>
+                <!-- === CUSTOMIZE YOUR LINKS HERE === -->
+                <li><a href="https://github.com/your-username" target="_blank" aria-label="GitHub Profile"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a></li>
+                <li><a href="https://linkedin.com/in/your-username" target="_blank" aria-label="LinkedIn Profile"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></a></li>
+                <li><a href="mailto:your-email@example.com" aria-label="Send an Email"><svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"></path></svg></a></li>
+            </ul>
+        </div>
+        
+        <!-- === IMPORTANT: CONFIGURE FORM ACTION === -->
+        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="form-group"><label id="name-label" for="name">Name / Handle</label><input type="text" id="name" name="name" required></div>
+            <div class="form-group"><label id="email-label" for="email">Email / Comms Address</label><input type="email" id="email" name="email" required></div>
+            <div class="form-group"><label id="message-label" for="message">Message / Data Packet</label><textarea id="message" name="message" required></textarea></div>
+            <button id="submit-btn" type="submit">
+                <span id="submit-text">Transmit Message</span>
+                <svg id="submit-icon-sci-fi" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                <svg id="submit-icon-fantasy" style="display:none;" viewBox="0 0 512 512" fill="currentColor"><path d="M497.2 224.5c-5.4-12.5-16.3-22.1-29.2-25.8L382.8 174l-37.4-86.3c-7.5-17.3-25.4-27.9-44.5-25.1-19.1 2.8-34.1 18.2-36.5 37.4l-29.3 234.9-106.6 26.6c-18.4 4.6-30.8 22.3-28.5 41s20.6 32.1 39.5 29.8l108.9-27.2 29.3-234.9 59.3 14.8-19.9 79.8c-1.3 5.2.7 10.7 5.2 13.9l32.9 23.5c4.5 3.2 10.3 3.2 14.8 0l32.9-23.5c4.5-3.2 6.5-8.7 5.2-13.9l-19.9-79.8 83.1-20.8c12.9-3.7 22.3-13.5 25.8-26.2s-2.9-26.6-13.9-34.9l-32.9-23.5c-11-8.3-26.6-8.3-37.6 0l-32.9 23.5-3.3 13.4 48.3 12.1c2.1.5 3.8 1.9 4.8 3.8l.1.3c1 1.9.9 4.2-.3 6.1l-6.1 9.8-19.4-4.8 13.9-55.5c2.3-9.1-3.2-18.2-12.3-20.5-9.1-2.3-18.2 3.2-20.5 12.3l-13.9 55.5-19.4-4.8 26.6-106.6c.9-3.7-1.4-7.4-5.1-8.3-3.7-.9-7.4 1.4-8.3 5.1L256 256l-32.9-8.2 16.6-66.3c2.3-9.1-3.2-18.2-12.3-20.5-9.1-2.3-18.2 3.2-20.5 12.3l-16.6 66.3-32.9-8.2 44.5-178.1c.9-3.7-1.4-7.4-5.1-8.3-3.7-.9-7.4 1.4-8.3 5.1L151 247.8l-32.9-8.2 20.8-83.1c2.3-9.1-3.2-18.2-12.3-20.5s-18.2 3.2-20.5 12.3l-20.8 83.1L26 235.8c-9.1-2.3-18.2 3.2-20.5 12.3-2.3 9.1 3.2 18.2 12.3 20.5l55.5 13.9-23.5 32.9c-8.3 11-8.3 26.6 0 37.6l23.5 32.9 13.4-3.3 12.1 48.3c.5 2.1 1.9 3.8 3.8 4.8l.3.1c1.9 1 4.2.9 6.1-.3l9.8-6.1-4.8-19.4 55.5 13.9c9.1 2.3 18.2-3.2 20.5-12.3s-3.2-18.2-12.3-20.5l-55.5-13.9 4.8-19.4-66.3 16.6c-9.1 2.3-18.2-3.2-20.5-12.3-2.3-9.1 3.2-18.2 12.3-20.5l66.3-16.6L256 256l8.2 32.9-66.3 16.6c-9.1 2.3-14.6 11.4-12.3 20.5s11.4 14.6 20.5 12.3l66.3-16.6L288 344.9l8.2 32.9-83.1 20.8c-9.1 2.3-14.6 11.4-12.3 20.5s11.4 14.6 20.5 12.3l83.1-20.8 13.9 55.5-4.8 19.4 9.8 6.1c1.9 1.2 4.2 1.3 6.1.3l.3-.1c1.9-1 3.3-2.7 3.8-4.8l12.1-48.3 13.4 3.3 23.5-32.9c8.3-11 8.3-26.6 0-37.6l-23.5-32.9 55.5-13.9c9.1-2.3 14.6-11.4 12.3-20.5s-11.4-14.6-20.5-12.3L400 311.8l-13.9 55.5 19.4 4.8-6.1-9.8c-1.2-1.9-1.3-4.2-.3-6.1l.1-.3c1-1.9 2.7-3.3 4.8-3.8l48.3-12.1 3.3-13.4 32.9-23.5c11-8.3 11-26.6 0-37.6l-32.9-23.5-3.3 13.4-83.1 20.8c-2.1.5-3.8 1.9-4.8 3.8l-.1.3c-1 1.9-.9 4.2.3 6.1l6.1 9.8 19.4-4.8-13.9-55.5c-2.3-9.1 3.2-18.2 12.3-20.5s18.2 3.2 20.5 12.3l13.9 55.5 19.4-4.8-26.6-106.6c-.9-3.7 1.4-7.4 5.1-8.3s7.4 1.4 8.3 5.1l26.6 106.6 32.9-8.2-44.5-178.1c-.9-3.7 1.4-7.4 5.1-8.3 3.7-.9 7.4 1.4 8.3 5.1l37.4 86.3 85.2 24.1c12.9 3.7 22.3 13.5 25.8 26.2s-2.9 26.6-13.9 34.9z"/></svg>
+            </button>
+        </form>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
-            // --- DOM Element References ---
             const body = document.body;
             const themeSwitcher = document.getElementById('theme-switcher');
             const themeIcon = document.getElementById('theme-icon');
             const particlesContainer = document.getElementById('particles-js');
             const preloader = document.getElementById('preloader');
+            const submitIconSciFi = document.getElementById('submit-icon-sci-fi');
+            const submitIconFantasy = document.getElementById('submit-icon-fantasy');
 
-            // --- Dynamic Text Content ---
-            // This object holds all the text that changes between themes.
             const textContent = {
                 sciFi: {
-                    heroTitle: 'Welcome, I am Harshit.',
-                    heroSubtitle: 'This is a chronological data log of my journey through the complex systems of game development.',
-                    timelineTitle: 'Development Timeline',
-                    preloaderText: 'INITIALIZING DATA STREAM........................'
+                    heroTitle: 'Welcome, I am Harshit.', heroSubtitle: 'This is a chronological data log of my journey through the complex systems of game development.',
+                    timelineTitle: 'Development Timeline', preloaderText: 'INITIALIZING DATA STREAM...',
+                    contactTitle: 'Establish a Secure Link', contactSubtitle: 'Have a project, a question, or a collaboration idea? My comms are open. Transmit your data packet below or connect via my network coordinates.',
+                    nameLabel: 'Your Callsign / Name', emailLabel: 'Return Comms Channel (Email)', messageLabel: 'Data Packet (Message)', submitText: 'Transmit Message'
                 },
                 fantasy: {
-                    heroTitle: 'Welcome, I am Harshit.',
-                    heroSubtitle: 'This is a telling of my grand quest through the realms of game development, one chapter at a time.',
-                    timelineTitle: 'The Grand Chronicle',
-                    preloaderText: 'UNFURLING THE SCROLL...............................'
+                    heroTitle: 'Welcome, I am Harshit.', heroSubtitle: 'This is a telling of my grand quest through the realms of game development, one chapter at a time.',
+                    timelineTitle: 'The Grand Chronicle', preloaderText: 'UNFURLING THE SCROLL...',
+                    contactTitle: 'Send a Missive', contactSubtitle: 'Have a quest, a query, or a tale to share? My doors are open. Inscribe your message on the scroll below or send a raven to my other holdings.',
+                    nameLabel: 'Your Name & Title', emailLabel: 'Your Return Address (Email)', messageLabel: 'Your Missive (Message)', submitText: 'Dispatch Scroll'
                 }
             };
             
-            // --- Helper to update all dynamic text elements ---
             const updateTextContent = (theme) => {
                 const content = (theme === 'fantasy') ? textContent.fantasy : textContent.sciFi;
-                document.getElementById('hero-title').textContent = content.heroTitle.replace('[Your Name]', 'Your Name'); // Replace with your actual name
+                document.getElementById('hero-title').textContent = content.heroTitle;
                 document.getElementById('hero-subtitle').textContent = content.heroSubtitle;
                 document.getElementById('timeline-title').textContent = content.timelineTitle;
                 document.querySelector('.preloader-text').textContent = content.preloaderText;
+                document.getElementById('contact-title').textContent = content.contactTitle;
+                document.getElementById('contact-subtitle').textContent = content.contactSubtitle;
+                document.getElementById('name-label').textContent = content.nameLabel;
+                document.getElementById('email-label').textContent = content.emailLabel;
+                document.getElementById('message-label').textContent = content.messageLabel;
+                document.getElementById('submit-text').textContent = content.submitText;
+                if (theme === 'sci-fi') { submitIconSciFi.style.display = 'inline'; submitIconFantasy.style.display = 'none'; } 
+                else { submitIconSciFi.style.display = 'none'; submitIconFantasy.style.display = 'inline'; }
             };
 
-            // --- Particles.js Configuration ---
-            const particlesConfig = {
-                "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#58a6ff" }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": true, "distance": 150, "color": "#58a6ff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": true
-            };
-
-            // --- Theme Management ---
+            const particlesConfig = { "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#58a6ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5, "random": false }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#58a6ff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2, "direction": "none", "out_mode": "out" } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 4 } } }, "retina_detect": true };
+            
             let currentTheme = 'sci-fi';
-
             const applyTheme = (theme) => {
                 body.classList.remove('theme-sci-fi', 'theme-fantasy');
                 body.classList.add(`theme-${theme}`);
                 themeIcon.textContent = (theme === 'sci-fi') ? '🌙' : '☀️';
-                
                 updateTextContent(theme);
                 localStorage.setItem('portfolio-theme', theme);
                 currentTheme = theme;
-
-                // Handle particles
                 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                if (!prefersReducedMotion && theme === 'sci-fi') {
-                    particlesContainer.innerHTML = ''; // Clear previous instance if any
-                    particlesJS('particles-js', particlesConfig);
-                } else {
-                    particlesContainer.innerHTML = ''; // Destroy particles
-                }
+                if (!prefersReducedMotion && theme === 'sci-fi') { particlesContainer.innerHTML = ''; particlesJS('particles-js', particlesConfig); } 
+                else { particlesContainer.innerHTML = ''; }
             };
             
-            themeSwitcher.addEventListener('click', () => {
-                const newTheme = currentTheme === 'sci-fi' ? 'fantasy' : 'sci-fi';
-                applyTheme(newTheme);
-            });
+            themeSwitcher.addEventListener('click', () => { const newTheme = currentTheme === 'sci-fi' ? 'fantasy' : 'sci-fi'; applyTheme(newTheme); });
 
-            // --- Initial Theme Load ---
             const savedTheme = localStorage.getItem('portfolio-theme');
             const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            if (savedTheme) {
-                applyTheme(savedTheme);
-            } else if (systemPrefersDark) {
-                applyTheme('sci-fi');
-            } else {
-                applyTheme('fantasy'); // Default to light if no preference
-            }
+            if (savedTheme) { applyTheme(savedTheme); } 
+            else if (systemPrefersDark) { applyTheme('sci-fi'); } 
+            else { applyTheme('fantasy'); }
 
-            // --- Intersection Observer for Scroll Animations ---
             const timelineItems = document.querySelectorAll('.timeline-item');
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
             if (!prefersReducedMotion) {
                 const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, {
-                    threshold: 0.1
-                });
+                    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+                }, { threshold: 0.1 });
+                timelineItems.forEach(item => { observer.observe(item); });
+            } else { timelineItems.forEach(item => item.classList.add('visible')); }
 
-                timelineItems.forEach(item => {
-                    observer.observe(item);
-                });
-            } else {
-                // If user prefers reduced motion, make all items visible immediately
-                timelineItems.forEach(item => item.classList.add('visible'));
-            }
-
-            // --- Preloader Hiding Logic ---
-            window.addEventListener('load', () => {
-                preloader.classList.add('loaded');
-            });
+            window.addEventListener('load', () => { preloader.classList.add('loaded'); });
         });
     </script>
 </body>
